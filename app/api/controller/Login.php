@@ -6,7 +6,7 @@ use think\Request;
 
 class Login
 {
-    public function test(){
-        return app('json')->success('aaa');
+    public function login(Request $request){
+        return app('json')->success('success');
     }
 }

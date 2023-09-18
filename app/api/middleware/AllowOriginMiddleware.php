@@ -4,7 +4,6 @@
 namespace app\api\middleware;
 
 use app\Request;
-use crmeb\interfaces\MiddlewareInterface;
 use think\facade\Config;
 use think\Response;
 
@@ -42,7 +41,6 @@ class AllowOriginMiddleware
         } else {
             $response = $next($request)->header($header);
         }
-//        $request->filter(['strip_tags', 'addslashes', 'trim']);
         return $response;
     }
 }
