@@ -8,6 +8,8 @@ use Spatie\Macroable\Macroable;
  * Class Request
  * @package app
  * @method tokenData() 获取token信息
+ * @method uid() 获取用户uid
+ * @method userInfo() 获取用户信息
  */
 class Request extends \think\Request
 {
