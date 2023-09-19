@@ -5,6 +5,7 @@ namespace app\api\middleware;
 
 use app\Request;
 use think\facade\Config;
+use think\facade\Log;
 use think\Response;
 
 /**
@@ -33,7 +34,6 @@ class AllowOriginMiddleware
         $this->cookieDomain = Config::get('cookie.domain', '');
         $header = Config::get('cookie.header');
         $origin = $request->header('origin');
-
         if ($origin && ('' == $this->cookieDomain || strpos($origin, $this->cookieDomain)))
             $header['Access-Control-Allow-Origin'] = $origin;
         if ($request->method(true) == 'OPTIONS') {

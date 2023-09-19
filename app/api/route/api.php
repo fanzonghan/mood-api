@@ -3,22 +3,17 @@
 
 namespace app\api\route;
 
-use app\api\middleware\AllowOriginMiddleware;
 use think\facade\Route;
 use think\facade\Config;
 use think\Response;
 
-//无需授权的接口
-//Route::group(function () {
-    //登录
-    Route::post('login', 'Login/login');
+//登录
+Route::post('login', 'Login/login');
 
-    Route::get('index', 'PublicController/index');
+Route::get('index', 'PublicController/index');
 
-    Route::post('upload', 'Upload/uploads');
-    Route::post('article/add', 'Login/test');
-
-//})->middleware(AllowOriginMiddleware::class);
+Route::post('upload', 'Upload/uploads');
+Route::post('article/add', 'Login/test');
 
 Route::miss(function () {
     if (app()->request->isOptions()) {
