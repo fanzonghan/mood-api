@@ -4,6 +4,7 @@
 namespace app\api\middleware;
 
 use app\Request;
+use think\facade\Log;
 use xiaofan\utils\JwtAuth;
 
 class AuthTokenMiddleware
@@ -17,6 +18,8 @@ class AuthTokenMiddleware
             /** @var JwtAuth $Jwtauth */
             $Jwtauth = app()->make(JwtAuth::class);
             $tokenData = $Jwtauth->checkToken($token);
+            Log::error('$tokenData');
+            Log::error($tokenData);
             $authInfo = $tokenData['data'];
             Request::macro('uid', function () use (&$authInfo) {
                 return is_null($authInfo) ? 0 : (int)$authInfo['user']->uid;

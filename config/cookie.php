@@ -18,7 +18,7 @@ return [
     // 跨域header
     'header' => [
         'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Allow-Headers' => 'Authorization, Content-Type, Form-Type',
+        'Access-Control-Allow-Headers' => 'Authorization, Content-Type, Form-Type, Authori-zation',
         'Access-Control-Allow-Methods' => 'GET,POST,PATCH,PUT,DELETE,OPTIONS,DELETE',
         'Access-Control-Max-Age' => '1728000',
         'Access-Control-Allow-Credentials' => 'true'

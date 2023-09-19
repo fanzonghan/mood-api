@@ -12,7 +12,20 @@ namespace app\api\controller;
  */
 class PublicController
 {
-    public function index(){
-        return app('json')->success('afa');
+    public function index()
+    {
+
+        $banner = [
+            [
+                'image' => 'http://pan.xiaofan.ink/down/banner.jpg',
+                'title' => '让生活多一些艺术，让日子变得更加精致',
+                'url' => '',
+            ]
+        ];
+        $affiche = [
+            'title' => '注意：这是一条公告',
+            'url' => '#',
+        ];
+        return app('json')->success(compact('banner', 'affiche'));
     }
 }

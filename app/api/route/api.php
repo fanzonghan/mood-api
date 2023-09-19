@@ -3,17 +3,25 @@
 
 namespace app\api\route;
 
+use app\api\middleware\AuthTokenMiddleware;
 use think\facade\Route;
 use think\facade\Config;
 use think\Response;
 
 //登录
-Route::post('login', 'Login/login');
-
+Route::post('login', 'LoginController/login');
 Route::get('index', 'PublicController/index');
 
-Route::post('upload', 'Upload/uploads');
-Route::post('article/add', 'Login/test');
+//会员授权接口
+Route::group(function () {
+    //个人中心
+    Route::get('user', 'UserController/user');
+    //图片上传
+    Route::post('upload', 'Upload/uploads');
+    //发布文章
+    Route::post('article/add', 'LoginController/test');
+
+})->middleware(AuthTokenMiddleware::class);
 
 Route::miss(function () {
     if (app()->request->isOptions()) {
