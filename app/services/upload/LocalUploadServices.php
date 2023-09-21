@@ -22,7 +22,7 @@ class LocalUploadServices
     public function img($files)
     {
         $savename = Filesystem::disk('public')->putFile('/img', $files);
-        return 'http://192.168.77.10' . Config::get('filesystem.disks.public.url') . DS . $savename;
+        return 'http://192.168.77.10:8007' . Config::get('filesystem.disks.public.url') . DS . $savename;
     }
 
     /**
@@ -33,6 +33,6 @@ class LocalUploadServices
     public function video($files)
     {
         $savename = Filesystem::disk('public')->putFile('/video', $files);
-        return 'http://192.168.77.10' . Config::get('filesystem.disks.public.url') . DS . $savename;
+        return 'http://192.168.77.10:8007' . Config::get('filesystem.disks.public.url') . DS . $savename;
     }
 }

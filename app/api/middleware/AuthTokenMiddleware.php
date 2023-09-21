@@ -18,17 +18,18 @@ class AuthTokenMiddleware
             /** @var JwtAuth $Jwtauth */
             $Jwtauth = app()->make(JwtAuth::class);
             $tokenData = $Jwtauth->checkToken($token);
-            Log::error('$tokenData');
-            Log::error($tokenData);
+            if (empty($tokenData)) {
+                return app('json')->fail("token不存在或已过期");
+            }
             $authInfo = $tokenData['data'];
             Request::macro('uid', function () use (&$authInfo) {
-                return is_null($authInfo) ? 0 : (int)$authInfo['user']->uid;
+                return is_null($authInfo) ? 0 : (int)$authInfo['id'];
             });
             Request::macro('userInfo', function () use (&$authInfo) {
-                return $authInfo['data'];
-            });
-            Request::macro('tokenData', function () use (&$authInfo) {
                 return $authInfo;
+            });
+            Request::macro('tokenData', function () use (&$tokenData) {
+                return $tokenData;
             });
         } catch (\Exception $e) {
             return app('json')->make($e->getCode(), $e->getMessage());

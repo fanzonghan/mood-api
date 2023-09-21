@@ -3,6 +3,9 @@
 
 namespace app\api\controller;
 
+use app\Request;
+use think\facade\Db;
+
 /**
  * Class UserController
  * @package app\api\controller
@@ -12,15 +15,10 @@ namespace app\api\controller;
  */
 class UserController
 {
-    public function user()
+    public function user(Request $request)
     {
-        $userInfo = [
-            'id' => 1,
-            'account' => 'test',
-            'nickname' => '测试',
-            'phone' => '188888888888',
-            'avatar' => 'http://test.h5.org.cn/qz/pet/images/mine/d-icon1.png',
-        ];
+        $uid = $request->uid();
+        $userInfo = Db::name('mood_user')->where('id', $uid)->where('status', 1)->find();
         return app('json')->success($userInfo);
     }
 }

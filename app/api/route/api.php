@@ -10,7 +10,9 @@ use think\Response;
 
 //登录
 Route::post('login', 'LoginController/login');
+Route::post('register', 'LoginController/register');
 Route::get('index', 'PublicController/index');
+Route::get('article/list', 'PublicController/article_list');
 
 //会员授权接口
 Route::group(function () {
@@ -19,8 +21,9 @@ Route::group(function () {
     //图片上传
     Route::post('upload', 'Upload/uploads');
     //发布文章
-    Route::post('article/add', 'LoginController/test');
-
+    Route::post('article/add', 'ArticleController/add');
+    //我的文章
+    Route::get('my_article/list', 'ArticleController/my_article_list');
 })->middleware(AuthTokenMiddleware::class);
 
 Route::miss(function () {
