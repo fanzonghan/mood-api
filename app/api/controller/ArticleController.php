@@ -29,7 +29,7 @@ class ArticleController
             'mood' => $mood,
             'visible' => $visible,
             'content' => $intro,
-            'add_time' => strtotime($hotel),
+            'add_time' => time(),
         ];
         Db::startTrans();
         try {
